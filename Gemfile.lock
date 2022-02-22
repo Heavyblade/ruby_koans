@@ -1,0 +1,23 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    power_assert (2.0.1)
+    psych (4.0.3)
+      stringio
+    rake (13.0.6)
+    rdoc (6.4.0)
+      psych (>= 4.0.0)
+    stringio (3.0.1)
+    test-unit (3.5.3)
+      power_assert
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rake
+  rdoc
+  test-unit
+
+BUNDLED WITH
+   2.1.4
