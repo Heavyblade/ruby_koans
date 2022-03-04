@@ -10,6 +10,6 @@ class AboutTriangleAssignment < EdgeCase::Koan
     assert_raise(TriangleError) do triangle(0, 0, 0) end
     assert_raise(TriangleError) do triangle(3, 4, -5) end
     assert_raise(TriangleError) do triangle(2, 4, 2) end 
- end
+  end
 end
   
