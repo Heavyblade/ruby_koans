@@ -6,24 +6,24 @@ class AboutClassMethods < EdgeCase::Koan
 
   def test_objects_are_objects
     fido = Dog.new
-    assert_equal __, fido.is_a?(Object)
+    assert_equal true, fido.is_a?(Object)
+  end
+
+  def test_classes_are_objects_too_2
+    assert_equal true, Dog.is_a?(Class)
   end
 
   def test_classes_are_objects_too
-    assert_equal __, Dog.is_a?(Class)
-  end
-
-  def test_classes_are_objects_too
-    assert_equal __, Dog.is_a?(Object)
+    assert_equal true, Dog.is_a?(Object)
   end
 
   def test_objects_have_methods
     fido = Dog.new
-    assert_equal __, fido.methods.size
+    assert_equal 62, fido.methods.size
   end
 
   def test_classes_have_methods
-    assert_equal __, Dog.methods.size
+    assert_equal 117, Dog.methods.size
   end
 
   def test_you_can_define_methods_on_individual_objects
@@ -31,23 +31,24 @@ class AboutClassMethods < EdgeCase::Koan
     def fido.wag
       :fidos_wag
     end
-    assert_equal __, fido.wag
+    assert_equal :fidos_wag, fido.wag
   end
 
   def test_other_objects_are_affected_by_these_singleton_methods
     fido = Dog.new
     rover = Dog.new
-    def fido.wag
+
+    def fido.wag2
       :fidos_wag
     end
 
-    assert_raise(___) do
-      rover.wag
+    assert_raise(NoMethodError) do
+      rover.wag2
     end
   end
 
   # ------------------------------------------------------------------
-  
+
   def Dog.wag
     :class_level_wag
   end
@@ -59,13 +60,13 @@ class AboutClassMethods < EdgeCase::Koan
   end
 
   def test_since_classes_are_objects_you_can_define_singleton_methods_on_them_too
-    assert_equal __, Dog.a_class_method
+    assert_equal :dogs_class_method, Dog.a_class_method
   end
 
   def test_class_methods_are_independent_of_instance_methods
     fido = Dog.new
-    assert_equal __, fido.wag
-    assert_equal __, Dog.wag
+    assert_equal :instance_level_wag, fido.wag
+    assert_equal :class_level_wag, Dog.wag
   end
 
   # ------------------------------------------------------------------
@@ -96,14 +97,14 @@ class AboutClassMethods < EdgeCase::Koan
   def test_you_can_define_class_methods_inside_the_class
     assert_equal __, Dog.a_class_method
   end
-      
+
 
   # ------------------------------------------------------------------
 
   LastExpressionInClassStatement = class Dog
                                      21
                                    end
-  
+
   def test_class_statements_return_the_value_of_their_last_expression
     assert_equal __, LastExpressionInClassStatement
   end
